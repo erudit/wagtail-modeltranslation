@@ -243,6 +243,8 @@ def _new_set_url_path(self, parent):
             slug = getattr(self, localized_slug_field, None) or getattr(self, default_localized_slug_field, self.slug)
             parent_url_path = getattr(parent, localized_url_path_field, None) or \
                               getattr(parent, default_localized_url_path_field, parent.url_path)
+            if parent_url_path is None:
+                parent_url_path = parent.url_path
 
             setattr(self, localized_url_path_field, parent_url_path + slug + '/')
 
